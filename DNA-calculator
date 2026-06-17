@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Informatics DNA Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f4f8; padding: 20px; text-align: center; }
+        .container { background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; text-transform: uppercase; }
+        button { background-color: #2e7d32; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #1b5e20; }
+        .result { margin-top: 20px; font-weight: bold; color: #1565c0; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>DNA -> RNA Calculator</h2>
+    <p>Enter DNA sequence (A, T, G, C):</p>
+    <input type="text" id="dnaInput" placeholder="Example: ATGGCC">
+    <button onclick="translateDNA()">Transcribe</button>
+    
+    <div class="result" id="resultDiv"></div>
+</div>
+
+<script>
+    function translateDNA() {
+        let dna = document.getElementById('dnaInput').value.toUpperCase().trim();
+        let rnk = "";
+        
+        // Translating DNA letters to RNA (A->U, T->A, G->C, C->G)
+        for (let i = 0; i < dna.length; i++) {
+            if (dna[i] === 'A') rnk += 'U';
+            else if (dna[i] === 'T') rnk += 'A';
+            else if (dna[i] === 'G') rnk += 'C';
+            else if (dna[i] === 'C') rnk += 'G';
+            else {
+                alert("Please enter valid DNA letters only (A, T, G, C)!");
+                return;
+            }
+        }
+        
+        document.getElementById('resultDiv').innerText = "RNA Strand: " + rnk;
+    }
+</script>
+
+</body>
+</html>
